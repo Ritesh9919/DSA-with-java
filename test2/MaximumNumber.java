@@ -1,6 +1,8 @@
 package test2;
 import java.util.*;
 
+// We are given a 4 digit number using digits 1 to 9. What is the maximum 3 digit number that we can make by removing one digit from the given integer.
+
 public class MaximumNumber {
     public static int max_number(int n) {
         int max = Integer.MIN_VALUE;
