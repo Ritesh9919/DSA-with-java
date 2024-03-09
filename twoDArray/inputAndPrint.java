@@ -2,7 +2,8 @@ package twoDArray;
 import java.util.*;
 
 public class inputAndPrint {
-    public static void main(String[] args) {
+
+    public static int[][] takeInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of rows");
         int rows = sc.nextInt();
@@ -16,12 +17,22 @@ public class inputAndPrint {
                 arr2d[i][j] = sc.nextInt();
             }
         }
+        return arr2d;
+    }
 
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < cols; j++ ) {
+    public static void print(int[][] arr2d) {
+        for(int i = 0; i < arr2d.length; i++) {
+            for(int j = 0; j < arr2d[i].length; j++ ) {
                 System.out.print(arr2d[i][j] + " ");
             }
             System.out.println();
         }
+    }
+    public static void main(String[] args) {
+      
+        int[][] arr2d = takeInput();
+        print(arr2d);
+
+        
     }
 }
