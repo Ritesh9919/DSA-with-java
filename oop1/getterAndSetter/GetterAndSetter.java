@@ -8,11 +8,18 @@ public class GetterAndSetter {
         return rollNumber;
     }
 
-    public void setRollNumber(int num) {
-        if(num < 0) {
+    // public void setRollNumber(int rollNumber) {
+    //     if(rollNumber <= 0) {
+    //         return;
+    //     }
+    //     rollNumber = rollNumber;
+    // }
+
+    public  void setRollNumber(int rollNumber) {
+        if(rollNumber <= 0) {
             return;
         }
-        rollNumber = num;
+        this.rollNumber = rollNumber;
     }
     
 }
