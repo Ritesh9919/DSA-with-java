@@ -26,9 +26,11 @@ public class ComplexNumber {
     }
 
     public void multiply(ComplexNumber c2) {
-        this.realNumber = this.realNumber * c2.realNumber + this.realNumber * c2.imaginaryNumber;
-        this.imaginaryNumber = this.imaginaryNumber * c2.realNumber + this.imaginaryNumber * c2.imaginaryNumber;
-        
+        int real = (this.realNumber * c2.realNumber) - (this.imaginaryNumber * c2.imaginaryNumber);
+        int imaginary = (this.realNumber * c2.imaginaryNumber) + (this.imaginaryNumber * c2.realNumber);
+        this.realNumber = real;
+        this.imaginaryNumber = imaginary;
+         
     }
 
     public static void main(String[] args) {
