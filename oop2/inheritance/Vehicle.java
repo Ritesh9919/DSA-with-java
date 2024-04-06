@@ -2,7 +2,7 @@ package oop2.inheritance;
 
 public class Vehicle {
     private String color;
-    int maxSpeed;
+    protected int maxSpeed;
 
     public void print() {
         System.out.println("Vehicle" + " color " + this.color + " maxSpeed " + this.maxSpeed);
