@@ -31,6 +31,8 @@ public class ExceptionDemo {
               System.out.println("Negative Number exception raised");
         } catch(Exception e) {
             System.out.println("Generic exception");
+        } finally {
+            System.out.println("finally");
         }
         System.out.println("main");
         
