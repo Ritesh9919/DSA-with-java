@@ -26,8 +26,19 @@ public class Pair <T> {
     }
 
     public static void main(String[] args) {
-        Pair p1 = new Pair(2, 5);
+        Pair<Integer> p1 = new Pair<Integer>(2, 5);
         System.out.println(p1.getFirst() + " " + p1.getSecond());
+
+        Pair<String> p2 = new Pair<String>("Ritesh", "Maurya");
+        System.out.println(p2.first + " " + p2.second);
+        // p2.setFirst(2);
+        p2.setFirst("c");
+
+        Pair<Character> p3 = new Pair<Character>('a', 'b');
+        System.out.println(p3.first + " " + p3.second);
+
+        Pair<Double> p4 = new Pair<Double>(2.5, 3.5);
+        System.out.println(p4.first + " " + p4.second);
     
     }
 }
