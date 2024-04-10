@@ -1,10 +1,10 @@
 package oop3.generics;
 
-public class Pair <T> {
+public class Pair <T,S> {
     private T first;
-    private T second;
+    private S second;
 
-    public Pair(T first, T second) {
+    public Pair(T first, S second) {
         this.first = first;
         this.second = second;
     }
@@ -17,11 +17,11 @@ public class Pair <T> {
         this.first = first;
     }
 
-    public T getSecond() {
+    public S getSecond() {
         return second;
     }
 
-    public void setSecond(T second) {
+    public void setSecond(S second) {
         this.second = second;
     }
 
@@ -39,6 +39,8 @@ public class Pair <T> {
 
         Pair<Double> p4 = new Pair<Double>(2.5, 3.5);
         System.out.println(p4.first + " " + p4.second);
+
+        Pair<String, Integer>  p5 = new Pair<String,Integer>("aa", 20);
     
     }
 }
