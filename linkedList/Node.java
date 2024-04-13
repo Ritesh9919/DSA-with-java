@@ -28,6 +28,18 @@ public class Node<T> {
             temp = temp.next;
         }
     }
+
+    public static int countNode(Node<Integer> head) {
+        int result = 0;
+        Node<Integer> temp = head;
+
+        while (temp != null) {
+            result++;
+            temp = temp.next;
+        }
+
+        return result;
+    }
     
     public static void main(String[] args) {
         Node<Integer> head = new Node<Integer>(10);
@@ -35,8 +47,9 @@ public class Node<T> {
         Node<Integer> n3 = new Node<Integer>(30);
         head.next = n2;
         n2.next = n3;
-        increment(head);
-        print(head);
+        // increment(head);
+        // print(head);
+        System.out.println(countNode(head));
 
     }
 }
