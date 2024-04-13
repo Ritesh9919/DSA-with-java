@@ -18,6 +18,16 @@ public class Node<T> {
             temp = temp.next;
         }
     }
+
+    public static void increment(Node<Integer> head) {
+          
+        Node<Integer> temp = head;
+
+        while(temp != null) {
+            temp.data++;
+            temp = temp.next;
+        }
+    }
     
     public static void main(String[] args) {
         Node<Integer> head = new Node<Integer>(10);
@@ -25,7 +35,7 @@ public class Node<T> {
         Node<Integer> n3 = new Node<Integer>(30);
         head.next = n2;
         n2.next = n3;
-
+        increment(head);
         print(head);
 
     }
