@@ -111,6 +111,31 @@ public class Node<T> {
 
           return head;
     }
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> deleteNode(Node<Integer> head, int pos) {
+        if(head == null) {
+            return head;
+        }
+
+        if(pos == 0) {
+            return head.next;
+        }
+
+        Node<Integer> prev = head;
+        int count = 0;
+
+        while (count < pos-1 && prev != null) {
+            count++;
+            prev = prev.next;
+        }
+
+        if(prev != null && prev.next != null) {
+            prev.next = prev.next.next;
+        }
+
+        return head;
+    }
     
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
@@ -127,7 +152,11 @@ public class Node<T> {
         // System.out.println(countNode(head));
         // printIthNodeData(head, 3);
         // Node<Integer> head = takeInput();
-        Node<Integer> head = insertNode(n1, 3, 100);
+        // Node<Integer> head = insertNode(n1, 3, 100);
+        // print(head);
+        print(n1);
+        System.out.println();
+        Node<Integer> head = deleteNode(n1, 4);
         print(head);
         
 
