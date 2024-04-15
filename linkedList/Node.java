@@ -136,6 +136,21 @@ public class Node<T> {
 
         return head;
     }
+
+    @SuppressWarnings("unchecked")
+    public static int findNode(Node<Integer> head, int n) {
+        Node<Integer> temp = head;
+        int index = 0;
+
+        while (temp != null) {
+            if(temp.data == n) {
+                return index;
+            }
+            index++;
+            temp = temp.next;
+        }
+        return -1;
+    }
     
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
