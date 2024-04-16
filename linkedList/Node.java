@@ -207,6 +207,31 @@ public class Node<T> {
          }
          return head;
     }
+
+
+    @SuppressWarnings("unchecked")
+    public static void reverse(Node<Integer> root) {
+        if(root == null) {
+            return;
+        }
+
+        Node<Integer> curr = root;
+        Node<Integer> prev = null;
+        Node<Integer> next = curr.next;
+
+        while (next != null) {
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            next = curr.next;
+        }
+
+        curr.next = prev;
+        while (curr != null) {
+            System.out.print(curr.data + "--> ");
+            curr = curr.next;
+        }
+    }
     
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
@@ -233,8 +258,9 @@ public class Node<T> {
         System.out.println();
         // Node<Integer> head = appendLastNNodeToFirst(n1, 2);
         // print(head);
-        Node<Integer> head = removeDublicates(n1);
-        print(head);
+        // Node<Integer> head = removeDublicates(n1);
+        // print(head);
+        reverse(n1);
         
 
     }
