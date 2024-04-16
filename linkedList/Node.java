@@ -189,11 +189,29 @@ public class Node<T> {
         temp1.next = head;
         return newHead;
     }
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> removeDublicates(Node<Integer> head) {
+         if(head == null) {
+            return head;
+         }
+
+         Node<Integer> currNode = head;
+
+         while(currNode.next != null) {
+            if(currNode.data.equals(currNode.next.data)) {
+                currNode.next = currNode.next.next;
+            }else{
+                currNode = currNode.next;
+            }
+         }
+         return head;
+    }
     
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
-        Node<Integer> n2 = new Node<Integer>(20);
-        Node<Integer> n3 = new Node<Integer>(30);
+        Node<Integer> n2 = new Node<Integer>(10);
+        Node<Integer> n3 = new Node<Integer>(10);
         Node<Integer> n4 = new Node<Integer>(40);
         Node<Integer> n5 = new Node<Integer>(50);
         n1.next = n2;
@@ -213,7 +231,9 @@ public class Node<T> {
         // print(head);
         print(n1);
         System.out.println();
-        Node<Integer> head = appendLastNNodeToFirst(n1, 2);
+        // Node<Integer> head = appendLastNNodeToFirst(n1, 2);
+        // print(head);
+        Node<Integer> head = removeDublicates(n1);
         print(head);
         
 
