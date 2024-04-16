@@ -151,6 +151,44 @@ public class Node<T> {
         }
         return -1;
     }
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> appendLastNNodeToFirst(Node<Integer> head, int n) {
+        if(head == null) {
+            return head;
+        }
+
+        if(n == 0) {
+            return head;
+        }
+
+        Node<Integer> temp = head;
+        int size = 0;
+
+        while(temp != null) {
+            size++;
+            temp = temp.next;
+        }
+
+        temp = head;
+        int count = 1;
+
+        while(count < size-n) {
+            count++;
+            temp = temp.next;
+        }
+
+        Node<Integer> newHead = temp.next;
+        temp.next = null;
+        Node<Integer> temp1 = newHead;
+
+        while (temp1.next != null) {
+            temp1 = temp1.next;
+        }
+
+        temp1.next = head;
+        return newHead;
+    }
     
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
@@ -169,9 +207,13 @@ public class Node<T> {
         // Node<Integer> head = takeInput();
         // Node<Integer> head = insertNode(n1, 3, 100);
         // print(head);
+        // print(n1);
+        // System.out.println();
+        // Node<Integer> head = deleteNode(n1, 4);
+        // print(head);
         print(n1);
         System.out.println();
-        Node<Integer> head = deleteNode(n1, 4);
+        Node<Integer> head = appendLastNNodeToFirst(n1, 2);
         print(head);
         
 
