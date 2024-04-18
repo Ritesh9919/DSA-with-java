@@ -318,6 +318,21 @@ public class Node<T> {
         return head;
 
     }
+
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> deleteNodeRec(Node<Integer> head, int pos) {
+        if(head == null) {
+            return head;
+        }
+
+        if(pos == 0) {
+            return head.next;
+        }
+
+        head.next = deleteNodeRec(head.next, pos-1);
+        return head;
+    }
     
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
