@@ -2,6 +2,8 @@ package linkedList;
 
 import java.util.Scanner;
 
+ 
+
 public class Node<T> {
      
     T data;
@@ -333,7 +335,39 @@ public class Node<T> {
         head.next = deleteNodeRec(head.next, pos-1);
         return head;
     }
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> reverseRec(Node<Integer> head) {
+        // o(n2); time complexity
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        Node<Integer> revHead = reverseRec(head.next);
+        Node<Integer> tail = revHead;
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+
+        tail.next = head;
+        head.next = null;
+        return revHead;
+    }
+
     
+    public static Node<Integer> reverseRecBest(Node<Integer> head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        @SuppressWarnings("unchecked")
+        Node<Integer> revHead = reverseRecBest(head.next);
+        @SuppressWarnings("unchecked")
+        Node<Integer> tail = head.next;
+        tail.next = head;
+        head.next = null;
+        return revHead;
+    }
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
         Node<Integer> n2 = new Node<Integer>(20);
@@ -366,7 +400,11 @@ public class Node<T> {
         // print(head);
         // System.out.println(isPalindrome(n1));
         // printRecursive(n1);/
-        Node<Integer> head = insertRec(null, 0, 11);
+        // Node<Integer> head = insertRec(null, 0, 11);
+        // print(head);
+        // Node<Integer> head = reverseRec(n1);
+        // print(head);
+        Node<Integer> head = reverseRecBest(n1);
         print(head);
         
         
