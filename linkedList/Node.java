@@ -292,6 +292,32 @@ public class Node<T> {
         }
         return true;
     }
+
+    @SuppressWarnings("unchecked")
+    public static void printRecursive(Node<Integer> head) {
+        if(head == null) {
+            return;
+        }
+        System.out.print(head.data + "-->");
+        printRecursive(head.next);
+    }
+
+    public static Node<Integer> insertRec(Node<Integer> head, int pos, int data) {
+        Node<Integer> newNode = new Node<Integer>(data);
+        if(head == null && pos > 0) {
+            return head;
+        }
+        if(pos == 0) {
+            newNode.next = head;
+            return newNode;
+        }
+
+        @SuppressWarnings("unchecked")
+        Node<Integer> updatedHead = insertRec(head.next, pos-1, data);
+        head.next = updatedHead;
+        return head;
+
+    }
     
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
@@ -323,7 +349,10 @@ public class Node<T> {
         // reverse(n1);
         // Node<Integer> head = reverseHalf(n1);
         // print(head);
-        System.out.println(isPalindrome(n1));
+        // System.out.println(isPalindrome(n1));
+        // printRecursive(n1);/
+        Node<Integer> head = insertRec(null, 0, 11);
+        print(head);
         
         
 
