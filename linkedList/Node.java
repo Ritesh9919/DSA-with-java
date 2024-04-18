@@ -232,13 +232,73 @@ public class Node<T> {
             curr = curr.next;
         }
     }
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> midNode(Node<Integer> head) {
+        Node<Integer> slow = head;
+        Node<Integer> fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+        
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> reverseHalf(Node<Integer> head) {
+        if(head == null) {
+            return null;
+        }
+
+          
+          Node<Integer> prev = null;
+          Node<Integer> curr = head;
+          Node<Integer> next = null;
+
+          while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            
+            
+          }
+          
+          return prev;
+
+
+    }
+
+    @SuppressWarnings("unchecked")
+    public static boolean isPalindrome(Node<Integer> head) {
+        if(head == null) {
+            return true;
+        }
+
+        Node<Integer> mid = midNode(head);
+
+        Node<Integer> right = reverseHalf(mid);
+        Node<Integer> left = head;
+
+        while(left!= null && right != null) {
+            if(left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
     
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
-        Node<Integer> n2 = new Node<Integer>(10);
-        Node<Integer> n3 = new Node<Integer>(10);
-        Node<Integer> n4 = new Node<Integer>(40);
-        Node<Integer> n5 = new Node<Integer>(50);
+        Node<Integer> n2 = new Node<Integer>(20);
+        Node<Integer> n3 = new Node<Integer>(30);
+        Node<Integer> n4 = new Node<Integer>(20);
+        Node<Integer> n5 = new Node<Integer>(11);
         n1.next = n2;
         n2.next = n3;
         n3.next = n4;
@@ -260,7 +320,11 @@ public class Node<T> {
         // print(head);
         // Node<Integer> head = removeDublicates(n1);
         // print(head);
-        reverse(n1);
+        // reverse(n1);
+        // Node<Integer> head = reverseHalf(n1);
+        // print(head);
+        System.out.println(isPalindrome(n1));
+        
         
 
     }
