@@ -368,16 +368,60 @@ public class Node<T> {
         head.next = null;
         return revHead;
     }
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> mergeTwoSorteds(Node<Integer> head1, Node<Integer> head2) {
+        if(head1 == null) {
+            return head2;
+        }
+        if(head2 == null) {
+            return head1;
+        }
+
+        Node<Integer> mergeHead = head1.data < head2.data ? head1:head2;
+        @SuppressWarnings("unchecked")
+        Node<Integer> currNode1 = mergeHead.next;
+        Node<Integer> currNode2 = mergeHead == head1 ? head2 :head1;
+        Node<Integer> prev = mergeHead;
+
+        while(currNode1 != null && currNode2 != null) {
+            if(currNode1.data < currNode2.data) {
+                prev.next = currNode1;
+                prev = currNode1;
+                currNode1 = currNode1.next;
+            }else{
+                prev.next = currNode2;
+                prev = currNode2;
+                currNode2 = currNode2.next;
+            }
+
+            if(currNode1 != null) {
+                prev.next = currNode1;
+            }else{
+                prev.next = currNode2;
+            }
+        }
+
+        return mergeHead;
+    }
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
-        Node<Integer> n2 = new Node<Integer>(20);
-        Node<Integer> n3 = new Node<Integer>(30);
-        Node<Integer> n4 = new Node<Integer>(20);
-        Node<Integer> n5 = new Node<Integer>(11);
+        Node<Integer> n2 = new Node<Integer>(10);
+        Node<Integer> n3 = new Node<Integer>(22);
+
+
+        Node<Integer> m1 = new Node<Integer>(3);
+        Node<Integer> m2 = new Node<Integer>(8);
+        Node<Integer> m3 = new Node<Integer>(8);
+        Node<Integer> m4 = new Node<Integer>(36);
+
+
         n1.next = n2;
         n2.next = n3;
-        n3.next = n4;
-        n4.next = n5;
+        
+        m1.next = m2;
+        m2.next = m3;
+        m3.next = m4;
         // // increment(head);
         // // print(head);
         // System.out.println(countNode(head));
@@ -404,7 +448,9 @@ public class Node<T> {
         // print(head);
         // Node<Integer> head = reverseRec(n1);
         // print(head);
-        Node<Integer> head = reverseRecBest(n1);
+        // Node<Integer> head = reverseRecBest(n1);
+        // print(head);
+        Node<Integer> head = mergeTwoSorteds(n1,m1);
         print(head);
         
         
