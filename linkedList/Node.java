@@ -404,10 +404,61 @@ public class Node<T> {
 
         return mergeHead;
     }
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> merge(Node<Integer> head1, Node<Integer> head2) {
+        Node<Integer> mergeHead = head1.data < head2.data ? head1:head2;
+        Node<Integer> currNode1 = mergeHead.next;
+        Node<Integer> currNode2 = mergeHead == head1 ? head2:head1;
+        Node<Integer> prev = mergeHead;
+
+        while(currNode1 != null && currNode2 != null) {
+            if(currNode1.data < currNode2.data) {
+               prev.next = currNode1;
+               prev = currNode1;
+               currNode1 = currNode1.next;
+            }else{
+                prev.next = currNode2;
+                prev  = currNode2;
+                currNode2 = currNode2.next;
+            }
+
+            if(currNode1 != null) {
+                prev.next = currNode1;
+            }else {
+                prev.next = currNode2;
+            }
+
+
+
+
+        }
+                    return mergeHead;
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public static Node<Integer> mergeSort(Node<Integer> head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        Node<Integer> mid = midNode(head);
+        Node<Integer> newHead = mid.next;
+        mid.next = null;
+        Node<Integer> left = mergeSort(head);
+        Node<Integer> right = mergeSort(newHead);
+
+        return merge(left, right);
+    }
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
-        Node<Integer> n2 = new Node<Integer>(10);
+        Node<Integer> n2 = new Node<Integer>(9);
         Node<Integer> n3 = new Node<Integer>(22);
+        Node<Integer> n4 = new Node<Integer>(11);
+
+        Node<Integer> n5 = new Node<Integer>(50);
+
 
 
         Node<Integer> m1 = new Node<Integer>(3);
@@ -418,6 +469,8 @@ public class Node<T> {
 
         n1.next = n2;
         n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
         
         m1.next = m2;
         m2.next = m3;
@@ -449,8 +502,10 @@ public class Node<T> {
         // Node<Integer> head = reverseRec(n1);
         // print(head);
         // Node<Integer> head = reverseRecBest(n1);
+        // print(head);Node
+        // <Integer> head = mergeTwoSorteds(n1,m1);
         // print(head);
-        Node<Integer> head = mergeTwoSorteds(n1,m1);
+        Node<Integer> head = mergeSort(n1);
         print(head);
         
         
