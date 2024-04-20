@@ -468,6 +468,57 @@ public class Node<T> {
         }
         return index +1;
     }
+
+    public static Node<Integer> evenAfterOdd(Node<Integer> head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+       
+        Node<Integer> oddHead = null;
+        Node<Integer> oddTail = null;
+        Node<Integer> evenHead = null;
+        Node<Integer> evenTail = null;
+
+        Node<Integer> temp = head;
+
+        while(temp != null) {
+            if(temp.data % 2 != 0) {
+                if(oddHead == null) {
+                  oddHead = temp;
+                  oddTail = temp;
+                }else{
+                    oddTail.next = temp;
+                    oddTail = oddTail.next;
+                }
+            }else{
+                if(evenHead == null) {
+                    evenHead = temp;
+                    evenTail = temp;
+
+                }else{
+                    evenTail.next = temp;
+                    evenTail = evenTail.next;
+                }
+            }
+            temp = temp.next;
+            
+        }
+
+        if(oddHead == null) {
+            return evenHead;
+        }
+
+        if(evenHead == null) {
+            return oddHead;
+        }
+
+        oddTail.next = null;
+        evenTail.next = null;
+        
+        oddTail.next = evenHead;
+        return oddHead;
+    }
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
         Node<Integer> n2 = new Node<Integer>(9);
