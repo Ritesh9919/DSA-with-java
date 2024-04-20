@@ -451,6 +451,23 @@ public class Node<T> {
 
         return merge(left, right);
     }
+
+    public static int findNodeRec(Node<Integer> head, int n) {
+        if(head == null) {
+            return -1;
+        }
+
+        if(head.data == n) {
+            return 0;
+        }
+
+        @SuppressWarnings("unchecked")
+        int index = findNodeRec(head.next, n);
+        if(index == -1) {
+            return -1;
+        }
+        return index +1;
+    }
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
         Node<Integer> n2 = new Node<Integer>(9);
