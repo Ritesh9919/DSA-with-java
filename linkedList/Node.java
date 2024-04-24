@@ -519,6 +519,45 @@ public class Node<T> {
         oddTail.next = evenHead;
         return oddHead;
     }
+
+    public static Node<Integer> kReverse(Node<Integer> head, int k) {
+        if(head == null || k <= 1) {
+            return head;
+        }
+
+        Node<Inteegr> prev = null;
+        Node<Inteegr> curr = head;
+        Node<Inteegr> next = null;
+
+        int count = 0;
+        int nodeCount = 0;
+        Node<Inteegr> temp = head;
+
+        while (temp != null) {
+            nodeCount++;
+            temp = temp.next;
+        }
+
+        if(nodeCount == k) {
+            while (count < k && curr != null) {
+                next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+            return prev;
+        }else{
+            while (count < k && curr != null) {
+                next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+            head.next = kReverse(next, k);
+        }
+        return prev;
+
+    }
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
         Node<Integer> n2 = new Node<Integer>(9);
@@ -573,8 +612,9 @@ public class Node<T> {
         // print(head);Node
         // <Integer> head = mergeTwoSorteds(n1,m1);
         // print(head);
-        Node<Integer> head = mergeSort(n1);
-        print(head);
+        // Node<Integer> head = mergeSort(n1);
+        // print(head);
+        
         
         
 
