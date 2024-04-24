@@ -558,6 +558,49 @@ public class Node<T> {
         return prev;
 
     }
+
+    @SuppressWarnings("unchecked")
+    public static int length(Node<Integer> head) {
+        if(head == null) {
+            return 0;
+        }
+        return 1 + length(head.next);
+    }
+
+    public static Node<Inteegr> bubbleSort(node<Integer>) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        int n = length(head);
+
+        for(int i = 0; i < n; i++) {
+            Node<Integer> prev = null;
+            Node<Integer> curr = head;
+
+            while (curr != null) {
+                if(curr.data > curr.next.data) {
+                    if(prev == null) {
+                        head = head.next;
+                        curr.next = head.next;
+                        head.next = curr;
+                        prev = head;
+                    }else{
+                        Node<Integer> temp = curr.next.next;
+						curr.next.next = curr;
+						prev.next = curr.next;
+						curr.next = temp;
+						prev = prev.next;
+
+                    }
+                }else{
+                    prev = curr;
+                    curr = curr.next;
+                }
+            }
+        }
+        return head;
+    }
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
         Node<Integer> n2 = new Node<Integer>(9);
