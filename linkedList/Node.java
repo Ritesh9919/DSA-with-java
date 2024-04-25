@@ -212,9 +212,9 @@ public class Node<T> {
 
 
     @SuppressWarnings("unchecked")
-    public static void reverse(Node<Integer> root) {
-        if(root == null) {
-            return;
+    public static Node<Integer> reverse(Node<Integer> root) {
+        if(root == null || root.next == null) {
+            return root;
         }
 
         Node<Integer> curr = root;
@@ -229,10 +229,12 @@ public class Node<T> {
         }
 
         curr.next = prev;
+
         while (curr != null) {
             System.out.print(curr.data + "--> ");
             curr = curr.next;
         }
+        return prev;
     }
 
     @SuppressWarnings("unchecked")
@@ -469,6 +471,7 @@ public class Node<T> {
         return index +1;
     }
 
+    @SuppressWarnings({ "unchecked", "unchecked" })
     public static Node<Integer> evenAfterOdd(Node<Integer> head) {
         if(head == null || head.next == null) {
             return head;
@@ -520,18 +523,19 @@ public class Node<T> {
         return oddHead;
     }
 
+    @SuppressWarnings("unchecked")
     public static Node<Integer> kReverse(Node<Integer> head, int k) {
         if(head == null || k <= 1) {
             return head;
         }
 
-        Node<Inteegr> prev = null;
-        Node<Inteegr> curr = head;
-        Node<Inteegr> next = null;
+        Node<Integer> prev = null;
+        Node<Integer> curr = head;
+        Node<Integer> next = null;
 
         int count = 0;
         int nodeCount = 0;
-        Node<Inteegr> temp = head;
+        Node<Integer> temp = head;
 
         while (temp != null) {
             nodeCount++;
@@ -567,39 +571,75 @@ public class Node<T> {
         return 1 + length(head.next);
     }
 
-    public static Node<Inteegr> bubbleSort(node<Integer>) {
-        if(head == null || head.next == null) {
-            return head;
+    @SuppressWarnings("unchecked")
+    // public static Node<Inteegr> bubbleSort(Node<Integer> head) {
+    //     if(head == null || head.next == null) {
+    //         return head;
+    //     }
+
+    //     int n = length(head);
+
+    //     for(int i = 0; i < n; i++) {
+    //         Node<Integer> prev = null;
+    //         Node<Integer> curr = head;
+
+    //         while (curr != null) {
+    //             if(curr.data > curr.next.data) {
+    //                 if(prev == null) {
+    //                     head = head.next;
+    //                     curr.next = head.next;
+    //                     head.next = curr;
+    //                     prev = head;
+    //                 }else{
+    //                     Node<Integer> temp = curr.next.next;
+	// 					curr.next.next = curr;
+	// 					prev.next = curr.next;
+	// 					curr.next = temp;
+	// 					prev = prev.next;
+
+    //                 }
+    //             }else{
+    //                 prev = curr;
+    //                 curr = curr.next;
+    //             }
+    //         }
+    //     }
+    //     return head;
+    // }
+
+    public static Node<Integer> change(Node<Integer> head) {
+          head.data = 11;
+          return head;
+    }
+
+    
+
+    public static Node<Integer> nextLargeNumber(Node<Integer> head) {
+        head = reverse(head);
+        
+       Node<Integer> curr = head;
+       Node<Integer> prev = head;
+
+        int sum = curr.data + 1;
+        curr.data = sum % 10;
+        int carry = sum / 10;
+        curr = curr.next;
+
+        while(curr != null) {
+            sum = curr.data + carry;
+            curr.data = sum % 10;
+            carry = sum / 10;
+            prev = curr;
+            curr = curr.next;
         }
 
-        int n = length(head);
-
-        for(int i = 0; i < n; i++) {
-            Node<Integer> prev = null;
-            Node<Integer> curr = head;
-
-            while (curr != null) {
-                if(curr.data > curr.next.data) {
-                    if(prev == null) {
-                        head = head.next;
-                        curr.next = head.next;
-                        head.next = curr;
-                        prev = head;
-                    }else{
-                        Node<Integer> temp = curr.next.next;
-						curr.next.next = curr;
-						prev.next = curr.next;
-						curr.next = temp;
-						prev = prev.next;
-
-                    }
-                }else{
-                    prev = curr;
-                    curr = curr.next;
-                }
-            }
+        if(carry != 0) {
+            prev.next = new Node<Integer>(carry);
         }
+
+        head = reverse(head);
         return head;
+
     }
     public static void main(String[] args) {
         Node<Integer> n1 = new Node<Integer>(10);
@@ -657,6 +697,8 @@ public class Node<T> {
         // print(head);
         // Node<Integer> head = mergeSort(n1);
         // print(head);
+        Node<Integer> head = change(n1);
+        print(head);
         
         
         
