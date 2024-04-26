@@ -17,9 +17,18 @@ public class Stack {
       return topIndex == -1;
     }
 
+    private void doubleCapacity() {
+      int[] temp = data;
+      data = new int[temp.length * 2];
+      for(int i = 0; i < temp.length; i++) {
+        data[i] = temp[i];
+      }
+    }
+
     public void push(int ele) throws StackFullException {
         if(topIndex == data.length-1) {
-          throw new StackFullException();
+          // throw new StackFullException();
+         doubleCapacity();
         }
          data[++topIndex] = ele;
          
